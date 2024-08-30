@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}eDeti Shop{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/checkout.css')}}">
+{% endblock %}
+{% block body %}
+<section class="c-wrapper">
+    <div class="c-left">
+        <h1>Checkout</h1>
+        <div class="shadow-line"></div>
+        <div class="l-box">
+            <h2>Your basic information</h2>
+            <ul class="l-inputs">
+                <li>
+                    <label for="fname">First name*</label><br>
+                    <input type="text" id="fname" name="fname"><br>
+                </li>
+                <li>
+                    <label for="lname">Last name*</label><br>
+                    <input type="text" id="lname" name="lname"><br>
+                </li>
+                <li>
+                    <label for="email">Email*</label><br>
+                    <input type="email" id="email" name="email">
+                </li>
+            </ul>
+        </div>
+        <div class="shadow-line"></div>
+        <div class="l-box">
+            <h2>Your Payment Information</h2>
+            <!--Payement-->
+            <ul class="l-pay">
+                <li>
+                    <label for="ccard">Credit Card*</label><br>
+                    <input type="number" id="ccard" name="ccard" placeholder="XXXX XXXX XXXX XXXX"><br>
+                </li>
+                <li>
+                    <label for="exp">Expiry date*</label><br>
+                    <input type="month" id="exp" name="exp" placeholder="mm/yy"><br>
+                </li>
+                <li>
+                    <label for="cvcv">CVC/CVV*</label><br>
+                    <input type="number" id="cvcv" name="cvcv" placeholder="XXX">
+                </li>
+            </ul>
+            <form method="POST" action="pay">
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                <button class="action_btn">Proceed</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

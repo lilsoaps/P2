@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}eDeti Shop{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <div class="cart-container">
+        <h1 class="mb-4">Your Shopping Cart</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                <tr>
+                    <td>{{ item[3] | e }}</td>  <!-- Escapes output to prevent XSS -->
+                    <td>{{ item[1] | e }}</td>
+                    <td>{{ item[2] | e }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('views.remove_item') }}">
+                            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                            <button class="btn btn-danger action-button" type="submit">Remove</button>
+                            <input type="hidden" name="product_id" value="{{ item[0] | e }}">  <!-- Escape to prevent potential XSS -->
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="action_btn" href="/checkout">Checkout</a>
+    </div>
+</div>
+{% endblock %}

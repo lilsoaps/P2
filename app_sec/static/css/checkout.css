@@ -1,0 +1,141 @@
+* {
+    font-family: "Roboto", sans-serif;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: 100%;
+    background-color: #f0f0f0;
+}
+.c-wrapper {
+    width: 80%;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    position: relative;
+    padding: 40px 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+.shadow-line {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+/* Panel Left */
+.c-wrapper .c-left h1 {
+    font-size: 28px;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+.c-wrapper .c-left .l-box {
+    padding: 20px 0;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+.c-wrapper .c-left .l-box h2 {
+    font-size: 22px;
+    font-weight: 600;
+}
+.c-wrapper .c-left .l-box .l-inputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 15px;
+    margin: 25px 0;
+}
+.c-wrapper .c-left .l-box .l-inputs li label {
+    font-size: 18px;
+}
+.c-wrapper .c-left .l-box .l-inputs li input {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    width: 80%;
+    margin-top: 5px;
+    font-size: 16px;
+}
+#email {
+    width: 95%;
+}
+.c-wrapper .c-left .l-box .action_btn {
+    padding: 10px 50px;
+    background-color: #4caf50;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+}
+.c-wrapper .c-left .l-box .action_btn:hover {
+    background-color: #45a049;
+}
+/* Panel Right */
+.c-wrapper .c-right {
+    background-color: #4caf50;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 30px 20px;
+    padding-top: 50px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+.c-wrapper .c-right h1 {
+    font-size: 30px;
+    font-weight: 600;
+}
+.c-wrapper .c-right .r-box {
+    margin-top: 20px;
+}
+.c-wrapper .c-right .r-box p {
+    font-size: 24px;
+}
+.c-wrapper .c-right .r-box p span {
+    font-size: 16px;
+}
+.c-wrapper .c-right .r-box ul {
+    margin-top: 30px;
+}
+.c-wrapper .c-right .r-box ul li {
+    padding: 8px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+.c-wrapper .c-right .r-box ul li i {
+    margin-right: 6px;
+    font-size: 20px;
+}
+.c-wrapper .c-left .l-box .l-pay {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+.c-wrapper .c-left .l-box .l-pay li label {
+    font-size: 18px;
+}
+.c-wrapper .c-left .l-box .l-pay li input {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    width: 60%;
+    margin-top: 5px;
+    font-size: 16px;
+}
+#ccard {
+    width: 90%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}

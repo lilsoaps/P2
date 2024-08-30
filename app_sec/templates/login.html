@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css">
+    <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='images/logo_title.png')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/auth.css')}}">
+</head>
+<body>
+    <section class="gradient-custom">
+        <div class="login-main-container">
+            <div class="login-container">
+                <div class="login-card">
+                    <div class="login-card-body text-center">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <form method="POST" action="{{ url_for('auth.login') }}">
+                                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                                <p class="alpha-60 mb-5">Insira o seu email, password, e código TOTP!</p>
+                                
+                                <!-- Email Input -->
+                                <div class="form-outline form-white mb-4">
+                                    <input id="email" name="email" {% if incorrect_email is defined %}value="{{email}}" {% endif %} class="form-control form-control-lg" placeholder="example@hotmail.com" required/>
+                                    <label class="form-label" for="email">Email</label>
+                                    <span id="email-error" class="text-danger">{% if incorrect_email is defined %}Você ainda não está registado.{% endif %}</span>
+                                </div>
+                                
+                                <!-- Password Input -->
+                                <div class="form-outline form-white mb-4">
+                                    <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder=" " required/>
+                                    <label class="form-label" for="password">Password</label>
+                                    <span id="password1-error" class="text-danger">{% if incorrect_password is defined %}Password incorreta.{% endif %}</span>
+                                    
+                                    <div class="form-check mt-3 text-left">
+                                        <button type="button" class="btn btn-secondary" id="showPassword" onclick="togglePassword('password')">Show Password</button>
+                                    </div>
+                                    
+                                    <div class="form-check mt-3 text-left">
+                                        <button type="button" class="btn btn-secondary" id="showLastCharacter" onclick="toggleLastChar('password')">Show Last Character</button>
+                                    </div>
+                                    {% if errors is defined and errors.get("attempts") %}
+                                        <span class="text-danger">{{errors.get("attempts")}}</span>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" id="totp" name="totp" class="form-control form-control-lg" placeholder="123456" required/>
+                                    <label class="form-label" for="totp">TOTP Code</label>
+                                    <span id="totp-error" class="text-danger">{% if incorrect_totp is defined %}Código TOTP incorreto.{% endif %}</span>
+                                </div>
+                                <div class="form-check mb-4">
+                                    <input type="checkbox" class="form-check-input" id="privacyConsent" required>
+                                    <label class="form-check label-white form-check-label" for="privacyConsent">
+                                        I agree to the Privacy Policy and consent to the collection and use of my personal information as described therein.  
+                                    </label>
+                                </div>
+                                <p class="small mb-5 pb-lg-2"><a class="alpha-60" href="#!">Esqueceu-se da password?</a></p>
+                                <button class="btn login-btn btn-lg px-5" type="submit" id="login">Login</button>
+                            </form>
+                        </div>
+                        <div>
+                            <p class="mb-0">Ainda não tem conta? <a href="/sign-up" class="alpha-60 fw-bold">Sign Up</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{{url_for('static', filename='javascript/login.js')}}"></script>
+</body>
+</html>

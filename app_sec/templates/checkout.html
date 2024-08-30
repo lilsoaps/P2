@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% block title %}eDeti Shop - Checkout{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+{% endblock %}
+{% block body %}
+<section class="c-wrapper">
+    <div class="c-left">
+        <h1>Checkout</h1>
+        <div class="shadow-line"></div>
+
+        <!-- Display errors if any -->
+        {% if errors %}
+        <div class="error-container">
+            <ul>
+                {% for error in errors.values() %}
+                <li class="error">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="l-box">
+            <h2>Your basic information</h2>
+            <ul class="l-inputs">
+                <li>
+                    <label for="fname">First name*</label><br>
+                    <input type="text" id="fname" name="fname" value="{{ request.form.get('fname', '') }}"><br>
+                </li>
+                <li>
+                    <label for="lname">Last name*</label><br>
+                    <input type="text" id="lname" name="lname" value="{{ request.form.get('lname', '') }}"><br>
+                </li>
+                <li>
+                    <label for="email">Email*</label><br>
+                    <input type="email" id="email" name="email" value="{{ request.form.get('email', '') }}">
+                </li>
+            </ul>
+        </div>
+        <div class="shadow-line"></div>
+        <div class="l-box">
+            <h2>Your Payment Information</h2>
+            <!-- Payment -->
+            <ul class="l-pay">
+                <li>
+                    <label for="ccard">Credit Card*</label><br>
+                    <input type="text" id="ccard" name="ccard" placeholder="XXXX XXXX XXXX XXXX"
+                        value="{{ request.form.get('ccard', '') }}"><br>
+                </li>
+                <li>
+                    <label for="exp">Expiry date*</label><br>
+                    <input type="month" id="exp" name="exp" placeholder="mm/yy"
+                        value="{{ request.form.get('exp', '') }}"><br>
+                </li>
+                <li>
+                    <label for="cvcv">CVC/CVV*</label><br>
+                    <input type="number" id="cvcv" name="cvcv" placeholder="XXX"
+                        value="{{ request.form.get('cvcv', '') }}">
+                </li>
+            </ul>
+            <form method="POST" action="{{ url_for('views.pay') }}" onsubmit="return validateForm()">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="l-box">
+                    <h2>Re-enter your password to proceed</h2>
+                    <ul class="l-inputs">
+                        <li>
+                            <label for="password">Password*</label><br>
+                            <input type="password" id="password" name="password" placeholder="Enter your password"><br>
+                        </li>
+                    </ul>
+                    <!-- Insert the following block before the "Proceed" button in the Checkout page -->
+                    <div class="form-check mb-4">
+                        <input type="checkbox" class="form-check-input" id="privacyConsentCheckout" required>
+                        <label class="form-check-label" for="privacyConsentCheckout">
+                            I agree to the <a href="/privacy-policy" target="_blank">Privacy Policy</a> and consent to
+                            the collection and use of my personal information as described therein.
+                        </label>
+                    </div>
+                </div>
+                <button class="action_btn">Proceed</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            let isValid = true;
+            let errorMessages = [];
+    
+            // Get all the input fields
+            const fname = document.getElementById('fname').value.trim();
+            const lname = document.getElementById('lname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const ccard = document.getElementById('ccard').value.trim();
+            const exp = document.getElementById('exp').value.trim();
+            const cvcv = document.getElementById('cvcv').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const privacyConsent = document.getElementById('privacyConsentCheckout').checked;
+    
+            // Validate each field
+            if (!fname) {
+                errorMessages.push("First name is required.");
+                isValid = false;
+            }
+            if (!lname) {
+                errorMessages.push("Last name is required.");
+                isValid = false;
+            }
+            if (!email) {
+                errorMessages.push("Email is required.");
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                errorMessages.push("Please enter a valid email address.");
+                isValid = false;
+            }
+            if (!ccard) {
+                errorMessages.push("Credit card number is required.");
+                isValid = false;
+            } else if (!validateCreditCard(ccard)) {
+                errorMessages.push("Please enter a valid credit card number.");
+                isValid = false;
+            }
+            if (!exp) {
+                errorMessages.push("Expiry date is required.");
+                isValid = false;
+            }
+            if (!cvcv) {
+                errorMessages.push("CVC/CVV is required.");
+                isValid = false;
+            }
+            if (!password) {
+                errorMessages.push("Password is required.");
+                isValid = false;
+            }
+            if (!privacyConsent) {
+                errorMessages.push("You must agree to the Privacy Policy.");
+                isValid = false;
+            }
+    
+            // Display error messages
+            if (!isValid) {
+                alert(errorMessages.join("\n"));
+            }
+    
+            return isValid;
+        }
+    
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+    
+        function validateCreditCard(ccard) {
+            const re = /^\d{4}\d{4}\d{4}\d{4}$/;
+            return re.test(String(ccard));
+        }
+    </script>
+</section>
+{% endblock %}

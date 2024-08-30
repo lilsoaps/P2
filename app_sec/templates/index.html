@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}eDeti Shop{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+{% endblock %}
+{% block body %}
+<section class="container mt-5">
+    <div class="text-center mb-5">
+        <a href="{{ url_for('views.products') }}" class="btn btn-primary btn-lg">Our Products</a>
+    </div>
+</section>
+{% endblock %}
+{% block footer %}
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+{% endblock %}

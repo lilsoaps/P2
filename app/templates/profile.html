@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Profile - eDeti Shop{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self' 'sha256-abc...'; style-src 'self' 'sha256-def...';">
+{% endblock %}
+{% block beforenav %}
+<div class="d-flex flex-column" style="min-height: 100vh;">
+{% endblock %}
+{% block body %}
+<div class="container profile-container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-sidebar">
+                <div class="profile-image">
+                    <!-- Display user avatar -->
+                    <img alt="Profile Image" src="{{ url_for('static', filename='uploads/' + (avatar if avatar else '../images/default.png')) }}" class="img-fluid">
+                    <div class="profile-username mt-2">{{ username }}</div>
+                    <div class="profile-email text-muted">{{ email }}</div>
+                </div>
+                <div class="profile-actions mt-4">
+                    <a href="/logout" class="btn btn-secondary w-100">Logout</a>
+                    {% if type == '0' %}
+                    <a href="/add_product" class="btn btn-success w-100 mt-2">Add Product</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="settings">
+                <!-- Form for changing password -->
+                <h2 class="fw-bold mb-3">Change Password</h2>
+                <p class="mb-4">Please enter your current password and new password!</p>
+                <form action="/profile" method="POST" id="password-change-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    
+                    <div class="mb-4">
+                        <label for="old-password" class="form-label">Current Password</label>
+                        <input type="password" id="old-password" name="old-password" class="form-control form-control-lg" placeholder="Current Password" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="new-password" class="form-label">New Password</label>
+                        <input type="password" id="new-password" name="new-password" class="form-control form-control-lg" placeholder="New Password" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="confirm-password" class="form-label">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" class="form-control form-control-lg" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" type="submit" id="change-password">Change Password</button>
+                    </div>
+                </form>
+                
+                <!-- Form for changing avatar -->
+                <h2 class="fw-bold mt-5 mb-3">Change Avatar</h2>
+                <p class="mb-4">Upload a new avatar to update your profile picture.</p>
+                <form action="/change_avatar" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                
+                    <!-- Avatar Upload -->
+                    <div class="mb-4">
+                        <label for="avatar" class="form-label">Select New Avatar (Optional)</label>
+                        <input type="file" id="avatar" name="avatar" class="form-control form-control-lg" accept="image/*">
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" type="submit" id="change-avatar">Change Avatar</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='javascript/profile.js') }}"></script>
+{% endblock %}

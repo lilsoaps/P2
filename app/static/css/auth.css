@@ -1,0 +1,122 @@
+/* Login / Register */
+    /* Translação de 'Email' e 'Password' */
+    .form-outline .form-control.form-control-lg.active~.form-label,
+    .form-outline .form-control.form-control-lg:focus~.form-label {
+        transform: translateY(-2.0rem) translateY(.1rem) scale(.8);
+    }
+    .form-outline .form-control.form-control-lg.active~.form-label,
+    .form-outline .form-control.form-control-lg:not(:placeholder-shown)~.form-label {
+        transform: translateY(-2.0rem) translateY(.1rem) scale(.8);
+    }
+
+    .form-outline.form-white .form-control {
+        border: 1px solid white;
+    }
+    .gradient-custom {
+        min-height: 100%;
+        background: -webkit-linear-gradient(to right, #4A90E2, #9013FE); /* Changed gradient colors */
+        background: linear-gradient(to right, #4A90E2, #9013FE); /* Changed gradient colors */
+    }
+/*  Login / Register End */
+
+/* Error Spans */
+#username-error,
+#email-error,
+#password1-error,
+#password2-error {
+    display: block;
+    text-align: left;
+    color: hsl(0, 75%, 65%); /* Changed error color to a red shade */
+}
+
+/* Login and Register */
+.login-main-container {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-wrap: wrap;
+}
+.login-card {
+    border-radius: 1rem;
+    background-color: #282c34; /* Changed card background color */
+    text-align: center;
+    width: 41.666667%;
+}
+.login-card-body {
+    position: relative;
+    padding: 3rem;
+    height: 100%;
+}
+.login-card-body p,
+.login-card-body h2 {
+    color: #ffffff; /* Changed text color to white */
+}
+.login-card-body a:hover {
+    color: #9013FE; /* Changed hover color */
+}
+.alpha-60 {
+    color: hsla(0, 0%, 100%, 0.6); /* Kept same for semi-transparent white */
+}
+.login-btn {
+    position: relative;
+    color: #ffffff; /* Changed button text color to white */
+    border: 3px solid transparent;
+    background-color: #e94e77; /* Changed button background color */
+    max-height: fit-content;
+}
+.login-btn:hover {
+    color: #ffffff; /* Kept button hover text color as white */
+    background-color: #d63670; /* Changed button hover background color */
+    border: 3px solid transparent;
+}
+
+/* @media -> Adjust Sizes to fit screen */
+@media screen and (min-height: 700px) {
+    section div.login-main-container {
+        height: 100vh !important;
+    }
+}
+@media (max-width: 576px) {
+    .login-main-container {
+        max-width: 100%;
+        max-height: 100%;
+        width: 100%;
+        height: 100%;
+    }
+    .login-container {
+        width: 100%;
+        height: 100%;
+    }
+    .login-card {
+        width: 100%;
+        height: 100%;
+    }
+}
+@media (min-width: 768px) {
+    .login-main-container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px) {
+    .login-main-container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px) {
+    .login-main-container {
+        max-width: 1140px;
+    }
+}
+@media (min-width: 1400px) {
+    .login-main-container {
+        max-width: 1320px;
+    }
+}

@@ -1,0 +1,75 @@
+/* static/css/products.css */
+/* Add your custom styles here */
+.container {
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th {
+    background-color: #e9ecef;
+    color: #495057;
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.table-bordered tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Search bar container */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+/* Search input field */
+input[type="text"] {
+    width: 250px;
+    padding: 12px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #80bdff;
+}
+
+/* Search button */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    margin-left: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #004080;
+}

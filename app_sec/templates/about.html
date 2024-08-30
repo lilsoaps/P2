@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}eDeti Shop{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/about.css')}}">
+{% endblock %}
+<div class="d-flex flex-column" style="min-height: 990px;"></div>
+{% block body %}
+
+<section class="about">
+  <div class="about-section">
+      <h1>About Us Page</h1>
+      <p>This is the about us page of the project of Segurança Informática e nas Organizações</p>
+      <p>This project was done by:</p>
+      <p>Francisco Gonçalves Nmec: 1085381</p>
+    </div>  
+    
+  <div class="about-description">
+    <h3>Project description</h3>
+    <p>The assignment focuses on vulnerabilities in software projects, their exploration, and prevention. 
+      We were required to develop a small online shop application selling memorabilia for the Department of Electronics, 
+      Telecommunications, and Informatics (DETI) at the University of Aveiro. The online shop features items like mugs, cups, 
+      t-shirts, hoodies, and similar memorabilia.</p>
+      <p>In this project we implemented some CWE that were requested such as:</p>
+      <p>CWE-79 (Cross-Site Scripting) <br>CWE-89 (SQL Injection)</p>
+      <p>We also implemented others vulnerabilities:</p>      
+      <p>Cwe-20: Improper Input Validation</p>
+      <p>CWE-22 Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')</p>
+      <p>CWE-521: Weak Password Requirements</p>      
+      <p>CWE-522 - Insufficiently Protected Credentials</p>
+      <p>CWE-601: URL Redirection to Untrusted Site ('Open Redirect')</p>
+      <p>CWE-798 Use of Hard-coded Credentials</p>
+  </div>
+</section>
+
+{% endblock %}

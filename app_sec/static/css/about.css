@@ -1,0 +1,48 @@
+.about-section {
+    padding: 50px;
+    text-align: center;
+    background-color: #e6e6e6;
+    color: black;
+  }
+  
+  .about-section h1 {
+    font-weight: bold;
+    font-size: 50px;
+  }
+  
+  .about-section p {
+    font-size: 25px;
+  }
+  
+  .about-section i {
+    margin-right: 10px;
+  }
+  
+  .about-section img {
+    width: 200px;
+    border-radius: 5%;
+    margin-bottom: 20px;
+  }
+
+.about-description{
+    padding: 50px;
+    text-align: left;
+    background-color: #e6e6e6;
+    color: black;
+}
+    .about-description h1 {
+        font-weight: bold;
+        font-size: 50px;
+    }
+
+    .about-description p {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+
+.about {
+    padding: 50px;
+    text-align: center;
+    background-color: #e6e6e6;
+    color: black;
+}

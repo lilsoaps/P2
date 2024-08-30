@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='images/logo_title.png')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/auth.css')}}">
+</head>
+<body>
+    <section class="gradient-custom">
+        <div class="login-main-container">
+            <div class="login-container">
+                <div class="login-card">
+                    <div class="login-card-body text-center">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <form method="POST" action="/sign-up">
+                                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                                <h2 class="fw-bold mb-2 text-uppercase">Sign Up</h2>
+                                <p class="alpha-60 mb-5">Please enter your email and password!</p>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" id="username" name="username" autocomplete="off" class="form-control form-control-lg" placeholder=" " value="{{request.form['username']}}">
+                                    <label class="form-label" for="username">Username</label>
+                                    <span id="username-error">{% if errors is defined and errors.get("username") %}Your username is too short.{% endif %}</span>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="email" id="email" name="email" autocomplete="off" class="form-control form-control-lg" placeholder="example@hotmail.com" value="{{request.form['email']}}">
+                                    <label class="form-label" for="email">Email</label>
+                                    <span id="email-error">
+                                        {% if errors is defined and errors.get("email") %}
+                                            Please enter a valid email address.
+                                        {% elif email_in_use == True %}
+                                            This email is already registered.
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="password" id="password1" name="password1" class="form-control form-control-lg" placeholder=" "/>
+                                    <label class="form-label" for="password1">Password</label>
+                                    <span id="password1-error">
+                                        {% if errors is defined %}
+                                            {% if errors.get("length") %}Password must be at least 12 characters long.<br>{% endif %}
+                                            {% if errors.get("lowercase") %}Password must contain at least one lowercase letter.<br>{% endif %}
+                                            {% if errors.get("uppercase") %}Password must contain at least one uppercase letter.<br>{% endif %}
+                                            {% if errors.get("number") %}Password must contain at least one number.<br>{% endif %}
+                                            {% if errors.get("special") %}Password must contain at least one special character (@, #, $, etc.).<br>{% endif %}
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="password" id="password2" name="password2" class="form-control form-control-lg" placeholder=" "/>
+                                    <label class="form-label" for="password2">Confirm Password</label>
+                                    <span id="password2-error">{% if errors is defined and errors.get("confirm") %}Passwords do not match.{% endif %}</span>
+                                </div>
+                                <button class="btn login-btn btn-lg px-5" type="submit" id="sign-up">Sign Up</button>
+                            </form>
+                        </div>
+                        <div>
+                            <p class="mb-0">Already have an account? <a href="/login" class="alpha-60 fw-bold">Login</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{{url_for('static', filename='javascript/register.js')}}"></script>
+</body>
+</html>
